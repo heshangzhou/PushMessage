@@ -11,7 +11,7 @@ CREATE TABLE `device_by_hwop` (
     PRIMARY KEY (`id`) USING BTREE,
     KEY `idx_f_a` (`factory`,`agent_id`) USING BTREE,
     KEY `idx_f` (`factory`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='华为OPPO推送TOKEN表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='华为OPPO推送TOKEN表';
 
 -- 手机厂商设备信息表
 CREATE TABLE `device_info` (
@@ -32,7 +32,7 @@ CREATE TABLE `device_info` (
     `update_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE KEY `idx_u_a` (`user_user_id`,`agent_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8050 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='手机厂商设备信息表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='手机厂商设备信息表';
 
 -- 消息推送记录表
 CREATE TABLE `push_msg` (
@@ -57,4 +57,43 @@ CREATE TABLE `push_msg` (
     `up_time` datetime NOT NULL,
     PRIMARY KEY (`id`) USING BTREE,
     KEY `idx_code` (`push_code`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1172 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='消息推送记录表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='消息推送记录表';
+
+-- 推送到达记录表
+CREATE TABLE `push_arrival_record` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `agent_id` int(11) unsigned NOT NULL COMMENT '代理商id',
+    `user_user_id` int(11) NOT NULL COMMENT '用户id',
+    `type` tinyint(1) NOT NULL COMMENT '类型：0旧版推送 1新版推送',
+    `push_id` int(11) NOT NULL DEFAULT '0' COMMENT '推送ID',
+    `device_id` varchar(100) NOT NULL COMMENT '设备ID',
+    `device_name` varchar(100) NOT NULL COMMENT '手机型号',
+    `app_os` varchar(50) DEFAULT NULL COMMENT 'app系统',
+    `content` varchar(400) DEFAULT NULL COMMENT '推送内容',
+    `input_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+    PRIMARY KEY (`id`) USING BTREE,
+    KEY `idx_au` (`agent_id`,`user_user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='推送到达记录表';
+
+-- 总后台消息推送信息表
+CREATE TABLE `push_by_admin` (
+    `push_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '推送ID',
+    `push_title` varchar(50) NOT NULL COMMENT '推送标题',
+    `push_desc` varchar(200) NOT NULL COMMENT '推送内容',
+    `push_type` tinyint(2) DEFAULT '0' COMMENT '推送类型：1ID用户、2vip用户、3普通用户、4区域vip用户、5区域普通用户、6 区域全部用户、7全平台用户',
+    `agent_id` int(11) NOT NULL DEFAULT '0' COMMENT '推送地区（0.全部区域 *剩余为平台ID）',
+    `user_user_str` varchar(255) NOT NULL COMMENT '推送用户ID JSON格式',
+    `user_vip` tinyint(1) NOT NULL DEFAULT '0' COMMENT '用户会员类型（0.全部等级 1.会员 2.非会员）',
+    `address` varchar(255) NOT NULL COMMENT '安卓地址',
+    `address_param` varchar(255) NOT NULL COMMENT '安卓参数',
+    `app_os` tinyint(1) NOT NULL COMMENT 'APP系统（0.全部来源 1.Android 2.IOS）',
+    `push_num` int(11) NOT NULL COMMENT '推送人数',
+    `set_id` int(11) NOT NULL DEFAULT '0' COMMENT '推送链接来源ID',
+    `push_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '推送状态（0.待推送  1.推送成功  2.推送失败）',
+    `push_time` datetime NOT NULL COMMENT '推送时间',
+    `is_del` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除（0.未删除  1.删除）',
+    `input_time` datetime DEFAULT NULL COMMENT '添加时间',
+    `up_time` datetime DEFAULT NULL COMMENT '修改时间',
+    `del_time` datetime DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`push_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='总后台消息推送信息表';
