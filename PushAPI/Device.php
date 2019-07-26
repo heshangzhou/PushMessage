@@ -1,7 +1,7 @@
 <?php
 /**
  * Model
- * @FileName: HuiLifeDevice.php
+ * @FileName: Device.php
  * @Author:   wh
  * @Date:     2019-01-24 12:31:43
  * @Description:
