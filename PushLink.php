@@ -1,7 +1,7 @@
 <?php
 /**
- * 通过接收push_code跳转内联页
- * @Filename: PushLink.php 
+ * 接收push_code 返回给APP端跳转APP内联页所需参数
+ * @Filename: PushLink.php
  * @Author:   wh
  * @Date:     2019-03-08 16:56:09
  * @Description:
