@@ -11,19 +11,19 @@ PushMsg.php: 消息推送工厂类
 
 PushReport.php: 上报接口（记录用户登录设备信息及token）
 
-PushLink.php: 通过接收push_code跳转APP内联页页
+PushLink.php: 接收push_code 返回给APP端跳转APP内联页所需参数
 
-HWPush.php: 华为消息推送封装类（华为官方API）
+HWPush.php: 华为消息推送封装类（调用华为官方API）
 
-MZPush.php: 魅族消息推送封装类（魅族官方API）
+MZPush.php: 魅族消息推送封装类（调用魅族官方API）
 
-OPPush.php: OPPO消息推送封装类（OPPO官方API）
+OPPush.php: OPPO消息推送封装类（调用OPPO官方API）
 
-XMPush.php: 小米消息推送封装类（小米官方API）
+XMPush.php: 小米消息推送封装类（调用小米官方API）
 
-JGPush.php: 极光消息推送封装类（第三方推送平台）
+JGPush.php: 极光消息推送封装类（调用第三方推送平台API）
 
-IGTPush.php: 个推消息推送封装类（第三方推送平台）
+IGTPush.php: 个推消息推送封装类（调用第三方推送平台API）
 
 BaseHttp.php: curl请求类
 
