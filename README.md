@@ -19,6 +19,6 @@ IGTPush.php: 个推消息推送封装类（第三方推送平台）
 BaseHttp.php: curl请求类
 BasePush.php: 推送标准接口类
 
-PushCF.php: Error类
+PushCF.php: Error类 啊
 PushSetting.php: 推送配置
 Device.php: Model类
