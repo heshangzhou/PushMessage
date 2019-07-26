@@ -9,6 +9,10 @@ Push.php: 推送测试脚本
 
 PushMsg.php: 消息推送工厂类
 
+PushReport.php: 上报接口（记录用户登录设备信息及token）
+
+PushLink.php: 通过接收push_code跳转APP内联页页
+
 HWPush.php: 华为消息推送封装类（华为官方API）
 
 MZPush.php: 魅族消息推送封装类（魅族官方API）
@@ -30,5 +34,3 @@ PushCF.php: Error类
 PushSetting.php: 推送配置
 
 Device.php: Model类
-
-三、
