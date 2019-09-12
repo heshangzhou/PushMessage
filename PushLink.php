@@ -23,6 +23,13 @@ if (empty($push_code)) {
         $res   = PublicModel::querySql($sql, 'get_results', 'DB_Rds_**', 'O');
     }
 
+    // 全平台推送处理
+    if (!$res) {
+        $table = 'hu_push_msg';
+        $sql   = "select id,push_os,push_status,address,address_param from $table where push_code = '{$push_code}' and is_del = 0";
+        $res   = Model_Public::querySql($sql, 'get_results', 'DB_Rds_Hui_User', 'O');
+    }
+
     if (!$res && empty($res[0]->push_status)) {
         $code = 700;
     } else {
